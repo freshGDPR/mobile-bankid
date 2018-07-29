@@ -85,7 +85,7 @@ export default {
         method: 'get',
         url: ((process.env.NODE_ENV === 'production') ? 'https://api.freshgdpr.com' : 'http://localhost:9090') + '/mobile-bankid',
         params: (this.token) ? {
-          t: this.token
+          h: this.token
         } : {
           personal_number: this.personalNumber
         }

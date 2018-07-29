@@ -145,11 +145,7 @@ export default {
                 reader.readAsDataURL(response.data)
                 reader.onload = function () {
                   console.log('mobile-bankid report onload OK')
-                  // var reportDataUrl = reader.result;
-                  // reportElement.setAttribute("src", reportDataUrl);
-                  this.$store.commit('updateReport', reader.result)
-
-                  this.$router.push({ name: 'Report' })
+                  this.callback(reader.result)
                 }
               })
               .catch(response => {

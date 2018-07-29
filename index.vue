@@ -61,7 +61,7 @@ export default {
   name: 'mobile-bankid',
   props: [
     'callback',
-    'token',
+    'hash',
     'personalNumber'
   ],
   data () {
@@ -70,7 +70,8 @@ export default {
       max: 100,
       tabIndex: 1,
       message: 'Start your BankID app',
-      timer: ''
+      timer: '',
+      token
     }
   },
   methods: {
@@ -84,8 +85,8 @@ export default {
       axios({
         method: 'get',
         url: ((process.env.NODE_ENV === 'production') ? 'https://api.freshgdpr.com' : 'http://localhost:9090') + '/mobile-bankid',
-        params: (this.token) ? {
-          h: this.token
+        params: (this.hash) ? {
+          h: this.hash
         } : {
           personal_number: this.personalNumber
         }
@@ -110,7 +111,7 @@ export default {
         method: 'get',
         url: ((process.env.NODE_ENV === 'production') ? 'https://api.freshgdpr.com' : 'http://localhost:9090') + '/collect',
         params: {
-          h: this.h
+          t: this.token
         }
       })
         .then(response => {

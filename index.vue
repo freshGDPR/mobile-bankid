@@ -60,7 +60,6 @@ import axios from 'axios'
 export default {
   name: 'mobile-bankid',
   props: [
-    'callback',
     'hash',
     'personalNumber'
   ],
@@ -143,9 +142,10 @@ export default {
 
                 var reader = new window.FileReader()
                 reader.readAsDataURL(response.data)
+                var that = this
                 reader.onload = function () {
                   console.log('mobile-bankid report onload OK')
-                  this.callback(reader.result)
+                  that.$emit('bankid-okay', reader.result)
                 }
               })
               .catch(response => {

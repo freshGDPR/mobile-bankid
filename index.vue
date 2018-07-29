@@ -124,33 +124,9 @@ export default {
             this.message = response['data']['message']
           } else if (state === 2) {
             // TODO as in login
-            console.log('access granted ' + response['data']['reportToken'])
             clearInterval(this.timer)
             this.$refs.modal1.hide()
-
-            axios({
-              method: 'get',
-              url: ((process.env.NODE_ENV === 'production') ? 'https://api.freshgdpr.com' : 'http://localhost:9090') + '/report',
-              params: {
-                report_token: response['data']['reportToken']
-              },
-              responseType: 'blob'
-            })
-              .then(response => {
-                // console.log('image ' + JSON.stringify(response))
-                console.log('mobile-bankid /report OK')
-
-                var reader = new window.FileReader()
-                reader.readAsDataURL(response.data)
-                var that = this
-                reader.onload = function () {
-                  console.log('mobile-bankid report onload OK')
-                  that.$emit('bankid-okay', reader.result)
-                }
-              })
-              .catch(response => {
-                console.log('mobile-bankid /report failed')
-              })
+            this.$emit('access-granted', response)
           } else if (state === 3) {
             console.log('mobile-bankid login denied')
           }

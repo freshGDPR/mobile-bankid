@@ -71,14 +71,14 @@ export default {
       tabIndex: 1,
       message: 'Start your BankID app',
       timer: '',
-      token
+      token: 'no token (jet)'
     }
   },
   methods: {
     handleMobileBankId () {
       console.log('Mobile BankID')
-      console.log('token: ')
-      console.log(this.token)
+      console.log('hash: ')
+      console.log(this.hash)
       console.log('personalNumber: ')
       console.log(this.personalNumber)
 

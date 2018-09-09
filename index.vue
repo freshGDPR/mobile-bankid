@@ -75,10 +75,15 @@ export default {
   },
   methods: {
     handleMobileBankId () {
+      /* eslint-disable no-console */
       console.log('Mobile BankID')
+      /* eslint-disable no-console */
       console.log('hash: ')
+      /* eslint-disable no-console */
       console.log(this.hash)
+      /* eslint-disable no-console */
       console.log('personalNumber: ')
+      /* eslint-disable no-console */
       console.log(this.personalNumber)
 
       axios({
@@ -91,6 +96,7 @@ export default {
         }
       })
         .then(response => {
+          /* eslint-disable no-console */
           console.log('mobile-bankid ' + JSON.stringify(response))
 
           this.tabIndex = 1
@@ -99,11 +105,13 @@ export default {
 
           this.timer = setInterval(this.fetchMessage, 500) // 0.5 sec
         })
+      /* eslint-disable no-unused-vars */
         .catch(response => {
           this.$refs.modal2.show()
         })
     },
     fetchMessage () {
+      /* eslint-disable no-console */
       console.log('fetchMessage ' + this.token)
 
       axios({
@@ -114,6 +122,7 @@ export default {
         }
       })
         .then(response => {
+          /* eslint-disable no-console */
           console.log('mobile-bankid collect ' + JSON.stringify(response))
           var state = response['data']['state']
           // SENT_TO_BANKID = 0
@@ -128,6 +137,7 @@ export default {
             this.$refs.modal1.hide()
             this.$emit('access-granted', response)
           } else if (state === 3) {
+            /* eslint-disable no-console */            
             console.log('mobile-bankid login denied')
           }
         })
@@ -138,6 +148,7 @@ export default {
           /* do nothing */
           break
         case 1:
+          /* eslint-disable no-console */
           console.log('Next tabIndex 1')
           break
       }
